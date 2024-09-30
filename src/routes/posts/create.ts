@@ -7,7 +7,7 @@ export const createPostRouteSchema = z.object({
 		username: z.string().min(3).max(20),
 		content: z.string().min(1).max(2000),
 		boardId: z.string(),
-		replyingToId: z.optional(z.number({ coerce: true })),
+		replyingToId: z.optional(z.number()),
 	}),
 });
 

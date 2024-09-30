@@ -8,11 +8,7 @@ export const getBoardRouteSchema = z.object({
 	}),
 });
 
-export const getBoardRoute = async (
-	req: Request,
-	res: Response,
-	next: NextFunction,
-) => {
+export const getBoardRoute = async (req: Request, res: Response) => {
 	const { id } = req.params;
 
 	const board = await prisma.board.findFirst({
