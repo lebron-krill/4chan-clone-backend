@@ -14,10 +14,13 @@ model Board {
 }
 
 model Post {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  username  String
-  content   String
-  board     Board    @relation(fields: [boardId], references: [id], onDelete: Cascade)
-  boardId   String
+  id           Int      @id @default(autoincrement())
+  createdAt    DateTime @default(now())
+  username     String
+  content      String
+  board        Board    @relation(fields: [boardId], references: [id], onDelete: Cascade)
+  boardId      String
+  replyingTo   Post?    @relation(name: "replies", fields: [replyingToId], references: [id])
+  replies      Post[]   @relation(name: "replies")
+  replyingToId Int?
 }
