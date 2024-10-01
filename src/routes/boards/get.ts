@@ -1,14 +1,19 @@
-import type { NextFunction, Request, Response } from "express";
+import type { Request, Response } from "express";
 import { z } from "zod";
 import { prisma } from "../../database";
 
-export const getBoardRouteSchema = z.object({
-	params: z.object({
-		id: z.string(),
-	}),
+const paramsSchema = z.object({
+	id: z.string(),
 });
 
-export const getBoardRoute = async (req: Request, res: Response) => {
+export const getBoardRouteSchema = z.object({
+	params: paramsSchema,
+});
+
+export const getBoardRoute = async (
+	req: Request<z.infer<typeof paramsSchema>>,
+	res: Response,
+) => {
 	const { id } = req.params;
 
 	const board = await prisma.board.findFirst({
