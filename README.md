@@ -9,6 +9,7 @@ bun install
 To run:
 
 ```bash
+bunx prisma generate
 bun run src/index.ts
 ```
 
